@@ -80,7 +80,7 @@
     (modify-syntax-entry ?\] ")[  " table) ; Block-close
     (modify-syntax-entry ?{  "(}  " table) ; Array-open
     (modify-syntax-entry ?}  "){  " table) ; Array-close
-    (modify-syntax-entry ?$  "/   " table) ; Character literal
+    (modify-syntax-entry ?$  "'   " table) ; Character literal
     (modify-syntax-entry ?!  ".   " table) ; End message / Delimit defs
     (modify-syntax-entry ?\; ".   " table) ; Cascade
     (modify-syntax-entry ?|  ".   " table) ; Temporaries
