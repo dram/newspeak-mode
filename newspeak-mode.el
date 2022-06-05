@@ -167,6 +167,8 @@
 (defconst newspeak-font-lock-keywords-2
   (append newspeak-font-lock-keywords-1
 	  (list
+	   '("\\<\\(class\\|private\\|protected\\|public\\)\\>"
+	     . font-lock-keyword-face)
 	   '("\\<\\(true\\|false\\|nil\\|self\\|super\\)\\>"
 	     . font-lock-builtin-face)
 	   '(":[a-z][A-z0-9_]*" . font-lock-variable-name-face)
