@@ -182,14 +182,14 @@
 
 ;;;###autoload
 (defun newspeak-mode ()
-  "Major mode for editing Smalltalk code.
+  "Major mode for editing Newspeak code.
 
 Commands:
 \\{newspeak-mode-map}"
   (interactive)
   (kill-all-local-variables)
   (setq major-mode 'newspeak-mode)
-  (setq mode-name "Smalltalk")
+  (setq mode-name "Newspeak")
 
   (use-local-map newspeak-mode-map)
   (set-syntax-table newspeak-mode-syntax-table)
