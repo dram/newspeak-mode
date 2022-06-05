@@ -74,8 +74,8 @@
     (modify-syntax-entry ?\" "!1  " table) ; Comment (generic)
     (modify-syntax-entry ?'  "\"  " table) ; String
     (modify-syntax-entry ?#  "'   " table) ; Symbol or Array constant
-    (modify-syntax-entry ?\( "()  " table) ; Grouping
-    (modify-syntax-entry ?\) ")(  " table) ; Grouping
+    (modify-syntax-entry ?\( "()1 " table) ; Grouping
+    (modify-syntax-entry ?\) ")(4 " table) ; Grouping
     (modify-syntax-entry ?\[ "(]  " table) ; Block-open
     (modify-syntax-entry ?\] ")[  " table) ; Block-close
     (modify-syntax-entry ?{  "(}  " table) ; Array-open
@@ -90,7 +90,7 @@
     (modify-syntax-entry ?>  ".   " table)
     (modify-syntax-entry ?+  ".   " table) ; math
     (modify-syntax-entry ?-  ".   " table) ; math
-    (modify-syntax-entry ?*  ".   " table) ; math
+    (modify-syntax-entry ?*  ". 23" table) ; math
     (modify-syntax-entry ?/  ".2  " table) ; math
     (modify-syntax-entry ?=  ".   " table) ; bool/assign
     (modify-syntax-entry ?%  ".   " table) ; valid selector
