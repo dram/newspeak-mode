@@ -71,7 +71,7 @@
     (modify-syntax-entry 10  " >  " table) ; Comment (generic)
     (modify-syntax-entry ?:  ".   " table) ; Symbol-char
     (modify-syntax-entry ?_  "_   " table) ; Symbol-char
-    (modify-syntax-entry ?\" "!1  " table) ; Comment (generic)
+    (modify-syntax-entry ?\" "/   " table) ; Character literal
     (modify-syntax-entry ?'  "\"  " table) ; String
     (modify-syntax-entry ?#  "'   " table) ; Symbol or Array constant
     (modify-syntax-entry ?\( "()1 " table) ; Grouping
@@ -80,7 +80,6 @@
     (modify-syntax-entry ?\] ")[  " table) ; Block-close
     (modify-syntax-entry ?{  "(}  " table) ; Array-open
     (modify-syntax-entry ?}  "){  " table) ; Array-close
-    (modify-syntax-entry ?$  "'   " table) ; Character literal
     (modify-syntax-entry ?!  ".   " table) ; End message / Delimit defs
     (modify-syntax-entry ?\; ".   " table) ; Cascade
     (modify-syntax-entry ?|  ".   " table) ; Temporaries
@@ -154,9 +153,9 @@
   (list
    '("#[A-z][A-z0-9_]*" . font-lock-constant-face)
    '("\\<[A-z][A-z0-9_]*:" . font-lock-function-name-face)
+   '("\".\"" . font-lock-string-face) ;; Chars
    (cons newspeak-binsel 'font-lock-function-name-face)
    '("\\^" . font-lock-keyword-face)
-   '("\\$." . font-lock-string-face) ;; Chars
    '("\\<[A-Z]\\sw*\\>" . font-lock-type-face))
   "Basic Smalltalk keywords font-locking.")
 
