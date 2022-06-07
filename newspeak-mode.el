@@ -170,7 +170,7 @@
 	     . font-lock-keyword-face)
 	   '("\\<\\(true\\|false\\|nil\\|self\\|super\\)\\>"
 	     . font-lock-builtin-face)
-	   '(":[a-z][A-z0-9_]*" . font-lock-variable-name-face)
+	   '(":[_[:alpha:]][_[:alnum:]]*" . font-lock-variable-name-face)
 	   '(" |" . font-lock-type-face)
 	   '("<.*>" . font-lock-builtin-face)))
   
