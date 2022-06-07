@@ -171,7 +171,6 @@
 	   '("\\<\\(true\\|false\\|nil\\|self\\|super\\)\\>"
 	     . font-lock-builtin-face)
 	   '(":[_[:alpha:]][_[:alnum:]]*" . font-lock-variable-name-face)
-	   '(" |" . font-lock-type-face)
 	   '("<.*>" . font-lock-builtin-face)))
   
   "Level 2 Smalltalk font-locking keywords.")
