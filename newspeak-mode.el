@@ -151,8 +151,8 @@
 
 (defconst newspeak-font-lock-keywords
   (list
-   '("#[[:alpha:]][[:alnum:]_]*" . font-lock-constant-face)
-   '("\\<[[:alpha:]][_[:alnum:]]*::?" . font-lock-function-name-face)
+   '("#[_[:alpha:]][_[:alnum:]]*" . font-lock-constant-face)
+   '("[_[:alpha:]][_[:alnum:]]*::?" . font-lock-function-name-face)
    '("\".\"" . font-lock-string-face) ;; Chars
    (cons newspeak-binsel 'font-lock-function-name-face)
    '("\\^" . font-lock-keyword-face)
