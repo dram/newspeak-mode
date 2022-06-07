@@ -230,7 +230,7 @@ Commands:
   (run-hooks 'newspeak-mode-hook))
 
 ;;;###autoload
-(add-to-list 'auto-mode-alist '("\\.st\\'" . newspeak-mode))
+(add-to-list 'auto-mode-alist '("\\.ns\\'" . newspeak-mode))
 
 (defun newspeak-tab ()
   (interactive)
