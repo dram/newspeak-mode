@@ -131,7 +131,6 @@
     (define-key keymap "\C-\M-f"   'newspeak-forward-sexp)
     (define-key keymap "\C-\M-b"   'newspeak-backward-sexp)
     (define-key keymap "!" 	   'newspeak-bang)
-    (define-key keymap ":"	   'newspeak-colon)
     (define-key keymap "\C-ct"      newspeak-template-map)
 
     ;; -----
@@ -205,6 +204,7 @@ Commands:
   (set (make-local-variable 'indent-line-function)
        'newspeak-indent-line)
   (set (make-local-variable 'require-final-newline) t)
+  (set (make-local-variable 'tab-width) newspeak-indent-amount)
   (set (make-local-variable 'comment-start) "\"")
   (set (make-local-variable 'comment-end) "\"")
   (set (make-local-variable 'comment-column) 32)
@@ -518,13 +518,12 @@ expressions."
 (defun newspeak-indent-line ()
   (newspeak-indent-to-column
    (save-excursion
-     (beginning-of-line)
-     (skip-chars-forward " \t")
-     (if (and (not (newspeak-in-comment))
-	      (looking-at "[A-z][A-z0-9_]*:")
-	      (not (newspeak-at-begin-of-defun)))
-	 (newspeak-indent-for-colon)
-       (newspeak-calculate-indent)))))
+     (let ((line (thing-at-point 'line)))
+       (if (and (not (seq-contains "\n(.|" (char-before (line-end-position 0))))
+                (string-match "^[ \t]*[_[:alpha:]][_[:alnum:]]*:" line)
+                (not (string-match "=[ \t]*($" line)))
+	   (newspeak-indent-for-colon)
+         (newspeak-calculate-indent))))))
  
 (defun newspeak-toplevel-indent (for-scope)
   (let (orig)
@@ -549,7 +548,6 @@ expressions."
 	(widen)
 	(beginning-of-line)
 	(setq close (looking-at "[ \t]*\]"))
-	(narrow-to-region (point-min) (point)) ;only care about what's before
 	(setq state (parse-partial-sexp (point-min) (point)))
 	(cond ((nth 4 state) ;in a comment
 	       (save-excursion
@@ -570,10 +568,10 @@ expressions."
 			    (setq indent-amount (current-column))))))
 	      (t
 	       (save-excursion
-		 (newspeak-backward-whitespace)
-		 (if (or (bobp)
-			 (= (preceding-char) ?!))
-		     (setq indent-amount 0)))))
+		 (setq indent-amount
+		       (* (- (nth 0 state) ;depth in parens
+			     (if (string-match "^[ \t]*|?)" (thing-at-point 'line)) 1 0))
+			  newspeak-indent-amount)))))
 	(if (null indent-amount)
 	    (progn
 	      (newspeak-narrow-to-method)
